@@ -12,8 +12,10 @@ while True:
   input = input('Direction:') #Will be subsituted for voice control
   if input == 'left':
     GPIO.output(MOTOR_LEFT, GPIO.HIGH)
+    GPIO.output(MOTOR_RIGHT, GPIO.LOW)
   elif input == 'right':
     GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
+    GPIO.output(MOTOR_LEFT, GPIO.LOW)
   elif input == 'stop':
     #turns motors off
     GPIO.output(MOTOR_RIGHT, GPIO.LOW)
