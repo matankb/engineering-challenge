@@ -15,6 +15,10 @@ def phrase_heard(rec, audio):
   except sr.RequestError as e:
     print('Error: could not complete request; {0}'.format(e))
 
+with mic as source:
+  #calibrates for background noise
+  rec.adjust_for_ambient_noise(source)
+  
 #set mode for identifying pins
 GPIO.setmode(GPIO.BOARD)
 
