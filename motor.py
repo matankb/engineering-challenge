@@ -18,6 +18,8 @@ def phrase_heard(rec, audio):
 with mic as source:
   #calibrates for background noise
   rec.adjust_for_ambient_noise(source)
+
+rec.listen_in_background(mic, phrase_heard)
   
 #set mode for identifying pins
 GPIO.setmode(GPIO.BOARD)
