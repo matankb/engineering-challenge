@@ -50,4 +50,3 @@ while True:
     GPIO.output(MOTOR_LEFT, GPIO.LOW)
     GPIO.cleanup()
     print('Motors stopped')
-    break
