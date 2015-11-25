@@ -16,6 +16,9 @@ while True:
   elif input == 'right':
     GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
     GPIO.output(MOTOR_LEFT, GPIO.LOW)
+  elif input == 'forward':
+    GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
+    GPIO.output(MOTOR_LEFT, GPIO.HIGH)
   elif input == 'stop':
     #turns motors off
     GPIO.output(MOTOR_RIGHT, GPIO.LOW)
