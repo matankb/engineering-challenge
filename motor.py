@@ -5,8 +5,8 @@ from time import sleep
 GPIO.setmode(GPIO.BOARD)
 
 #set constants for GPIO pin numbers
-MOTOR_RIGHT = 11
-MOTOR_LEFT = 12
+MOTOR_RIGHT = 16
+MOTOR_LEFT = 18
 
 while True:
   input = input('Direction:') #Will be subsituted for voice control
