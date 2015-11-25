@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import speech_recognition as sr
 
 #set mode for identifying pins
 GPIO.setmode(GPIO.BOARD)
@@ -7,21 +8,22 @@ GPIO.setmode(GPIO.BOARD)
 MOTOR_RIGHT = 16
 MOTOR_LEFT = 18
 
+command = ''
+
 while True:
-  input = input('Direction:') #Will be subsituted for voice control
-  if input == 'left':
+  if command == 'left':
     print('Moving left...')
     GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
     GPIO.output(MOTOR_LEFT, GPIO.LOW)
-  elif input == 'right':
+  elif command == 'right':
     print('Moving right...')
     GPIO.output(MOTOR_LEFT, GPIO.HIGH)
     GPIO.output(MOTOR_RIGHT, GPIO.LOW)
-  elif input == 'forward':
+  elif command == 'forward':
     print('Moving forward...')
     GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
     GPIO.output(MOTOR_LEFT, GPIO.HIGH)
-  elif input == 'stop':
+  elif command == 'stop':
     print('Stopping motors..')
     #turns motors off
     GPIO.output(MOTOR_RIGHT, GPIO.LOW)
