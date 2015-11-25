@@ -9,10 +9,10 @@ GPIO.setmode(GPIO.BOARD)
 MOTOR_RIGHT = 16
 MOTOR_LEFT = 18
 
-q = Queue()
+event_queue = Queue()
 
 while True:
-  command = q.get()
+  command = event_queue.get()
   if not command == '':
     if command == 'left':
       print('Moving left...')
