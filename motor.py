@@ -24,24 +24,24 @@ MOTOR_LEFT = 18
 
 while True:
   command = event_queue.get()
-  if not command == '':
-    if command == 'left':
-      print('Moving left...')
-      GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
-      GPIO.output(MOTOR_LEFT, GPIO.LOW)
-    elif command == 'right':
-      print('Moving right...')
-      GPIO.output(MOTOR_LEFT, GPIO.HIGH)
-      GPIO.output(MOTOR_RIGHT, GPIO.LOW)
-    elif command == 'forward':
-      print('Moving forward...')
-      GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
-      GPIO.output(MOTOR_LEFT, GPIO.HIGH)
-    elif command == 'stop':
-      print('Stopping motors..')
-      #turns motors off
-      GPIO.output(MOTOR_RIGHT, GPIO.LOW)
-      GPIO.output(MOTOR_LEFT, GPIO.LOW)
-      GPIO.cleanup()
-      print('Motors stopped')
-      break
+
+  if command == 'left':
+    print('Moving left...')
+    GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
+    GPIO.output(MOTOR_LEFT, GPIO.LOW)
+  elif command == 'right':
+    print('Moving right...')
+    GPIO.output(MOTOR_LEFT, GPIO.HIGH)
+    GPIO.output(MOTOR_RIGHT, GPIO.LOW)
+  elif command == 'forward':
+    print('Moving forward...')
+    GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
+    GPIO.output(MOTOR_LEFT, GPIO.HIGH)
+  elif command == 'stop':
+    print('Stopping motors..')
+    #turns motors off
+    GPIO.output(MOTOR_RIGHT, GPIO.LOW)
+    GPIO.output(MOTOR_LEFT, GPIO.LOW)
+    GPIO.cleanup()
+    print('Motors stopped')
+    break
