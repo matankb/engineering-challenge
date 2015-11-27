@@ -43,7 +43,7 @@ while True:
     print('Moving right...')
     GPIO.output(MOTOR_LEFT, GPIO.HIGH)
     GPIO.output(MOTOR_RIGHT, GPIO.LOW)
-  elif command == 'forward':
+  elif command == 'forward' or command == 'go':
     print('Moving forward...')
     GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
     GPIO.output(MOTOR_LEFT, GPIO.HIGH)

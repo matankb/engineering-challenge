@@ -30,7 +30,7 @@ while True:
     print('Moving left...')
   elif command == 'right':
     print('Moving right...')
-  elif command == 'forward':
+  elif command == 'forward' or command == 'go':
     print('Moving forward...')
   elif command == 'stop':
     print('Stopping motors..')
