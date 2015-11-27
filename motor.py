@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import speech_recognition as sr
-from Queue import Queue
+from queue import Queue
 
 event_queue = Queue()
 
@@ -20,7 +20,7 @@ with mic as source:
   rec.adjust_for_ambient_noise(source)
 
 rec.listen_in_background(mic, phrase_heard)
-  
+
 #set mode for identifying pins
 GPIO.setmode(GPIO.BOARD)
 

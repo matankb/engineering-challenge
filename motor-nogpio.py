@@ -1,5 +1,5 @@
 import speech_recognition as sr
-from Queue import Queue
+from queue import Queue
 
 event_queue = Queue()
 
