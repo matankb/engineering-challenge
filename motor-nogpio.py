@@ -8,7 +8,11 @@ mic = sr.Microphone()
 
 def phrase_heard(rec, audio):
   try:
-    event_queue.put(rec.recognize_google(audio))
+    rec_google = rec.recognize_google(audio)
+    commands = rec_google.split(' ')
+    for command in commands:
+        event_queue.put(command)
+    print(rec_google)
   except sr.UnknownValueError:
     print('Error: could not recognize speech')
   except sr.RequestError as e:
@@ -22,7 +26,6 @@ rec.listen_in_background(mic, phrase_heard)
 
 while True:
   command = event_queue.get()
-
   if command == 'left':
     print('Moving left...')
   elif command == 'right':
@@ -32,3 +35,5 @@ while True:
   elif command == 'stop':
     print('Stopping motors..')
     print('Motors stopped')
+
+  print(command)

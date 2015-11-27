@@ -9,7 +9,11 @@ mic = sr.Microphone()
 
 def phrase_heard(rec, audio):
   try:
-    event_queue.put(rec.recognize_google(audio))
+    rec_google = rec.recognize_google(audio)
+    commands = rec_google.split(' ')
+    for command in commands:
+        event_queue.put(command)
+    print(rec_google)
   except sr.UnknownValueError:
     print('Error: could not recognize speech')
   except sr.RequestError as e:
