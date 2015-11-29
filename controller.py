@@ -28,6 +28,8 @@ rec.listen_in_background(mic, phrase_heard)
 motor_r = Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
 motor_l = Motor(4, 5, 6) #SO ARE THESE
 
+TURN_TIME = 3 #constant for amount of time (secs) cart takes to turn
+
 while True:
   command = event_queue.get()
 
@@ -35,14 +37,23 @@ while True:
     print('Moving left...')
     motor_r.forward()
     motor_l.back()
+
   elif command == 'right':
     print('Moving right...')
     motor_r.back()
     motor_l.forward()
+
+    sleep(TURN_TIME)
+    event_queue.put('stop')
+
   elif command == 'forward' or command == 'go':
     print('Moving forward...')
     motor_r.forward()
     motor_l.forward()
+
+    sleep(TURN_TIME)
+    event_queue.put('stop')
+    
   elif command == 'stop':
     print('Stopping motors..')
     #turns motors off
