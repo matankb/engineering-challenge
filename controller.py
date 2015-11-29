@@ -37,6 +37,9 @@ while True:
     print('Moving left...')
     motor_r.forward()
     motor_l.back()
+    
+    sleep(TURN_TIME)
+    event.queue.put('stop')
 
   elif command == 'right':
     print('Moving right...')
@@ -50,9 +53,6 @@ while True:
     print('Moving forward...')
     motor_r.forward()
     motor_l.forward()
-
-    sleep(TURN_TIME)
-    event_queue.put('stop')
 
   elif command == 'back' or command == 'reverse':
     print('Moving back...')
