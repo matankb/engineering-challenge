@@ -1,4 +1,4 @@
-import io.py
+import io
 import speech_recognition as sr
 from queue import Queue
 from time import sleep
