@@ -1,58 +1,26 @@
 import RPi.GPIO as GPIO
-import speech_recognition as sr
-from queue import Queue
 
-event_queue = Queue()
-
-rec = sr.Recognizer()
-mic = sr.Microphone()
-
-def phrase_heard(rec, audio):
-  try:
-    rec_google = rec.recognize_google(audio)
-    commands = rec_google.split(' ')
-    for command in commands:
-        event_queue.put(command)
-  except sr.UnknownValueError:
-    print('Error: could not recognize speech')
-  except sr.RequestError as e:
-    print('Error: could not complete request; {0}'.format(e))
-
-with mic as source:
-  #calibrates for background noise
-  rec.adjust_for_ambient_noise(source)
-
-rec.listen_in_background(mic, phrase_heard)
-
-#set mode for identifying pins
 GPIO.setmode(GPIO.BOARD)
 
-#set constants for GPIO pin numbers
-MOTOR_RIGHT = 16
-MOTOR_LEFT = 18
+class Motor:
+    def __init__(self, pin_a, pin_b, pin_e):
+        self.pin_a = pin_a
+        self.pin_b = pin_b
+        self.pin_e = pin_e
 
-GPIO.setup(MOTOR_RIGHT, GPIO.OUT)
-GPIO.setup(MOTOR_LEFT, GPIO.OUT)
+        GPIO.setup(pin_a, GPIO.OUT)
+        GPIO.setup(pin_b, GPIO.OUT)
+        GPIO.setup(pin_e, GPIO.OUT)
 
-while True:
-  command = event_queue.get()
+    def forward(self):
+        GPIO.output(self.pin_a, GPIO.HIGH)
+        GPIO.output(self.pin_b, GPIO.LOW)
+        GPIO.output(self.pin_e, GPIO.HIGH)
 
-  if command == 'left':
-    print('Moving left...')
-    GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
-    GPIO.output(MOTOR_LEFT, GPIO.LOW)
-  elif command == 'right':
-    print('Moving right...')
-    GPIO.output(MOTOR_LEFT, GPIO.HIGH)
-    GPIO.output(MOTOR_RIGHT, GPIO.LOW)
-  elif command == 'forward' or command == 'go':
-    print('Moving forward...')
-    GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
-    GPIO.output(MOTOR_LEFT, GPIO.HIGH)
-  elif command == 'stop':
-    print('Stopping motors..')
-    #turns motors off
-    GPIO.output(MOTOR_RIGHT, GPIO.LOW)
-    GPIO.output(MOTOR_LEFT, GPIO.LOW)
-    GPIO.cleanup()
-    print('Motors stopped')
+    def back(self):
+        GPIO.output(self.pin_a, GPIO.LOW)
+        GPIO.output(self.pin_b, GPIO.HIGH)
+        GPIO.output(self.pin_e, GPIO.HIGH)
+
+    def stop(self):
+        GPIO.output(self.pin_e, GPIO.LOW)
