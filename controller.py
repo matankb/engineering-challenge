@@ -33,10 +33,10 @@ while True:
   if command == 'left':
     print('Moving left...')
     motor_r.forward()
-    motor_l.stop()
+    motor_l.back()
   elif command == 'right':
     print('Moving right...')
-    motor_r.stop()
+    motor_r.back()
     motor_l.forward()
   elif command == 'forward' or command == 'go':
     print('Moving forward...')
