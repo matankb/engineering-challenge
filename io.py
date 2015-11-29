@@ -2,6 +2,9 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
 
+RISING = GPIO.RISING
+FALLING = GPIO.FALLING
+
 class Pin:
     def __init__(self, num):
         self.num = num
@@ -31,3 +34,8 @@ class Motor:
 
     def stop(self):
         self.pin_e.low()
+
+def on_input(num, callback, type = RISING):
+    GPIO.setup(num, GPIO.IN)
+
+    GPIO.add_event_detect(num, type, callback)
