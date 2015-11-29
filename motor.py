@@ -31,6 +31,9 @@ GPIO.setmode(GPIO.BOARD)
 MOTOR_RIGHT = 16
 MOTOR_LEFT = 18
 
+GPIO.setup(MOTOR_RIGHT, GPIO.OUT)
+GPIO.setup(MOTOR_LEFT, GPIO.OUT)
+
 while True:
   command = event_queue.get()
 
