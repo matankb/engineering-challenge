@@ -13,7 +13,6 @@ def phrase_heard(rec, audio):
     commands = rec_google.split(' ')
     for command in commands:
         event_queue.put(command)
-    print(rec_google)
   except sr.UnknownValueError:
     print('Error: could not recognize speech')
   except sr.RequestError as e:
