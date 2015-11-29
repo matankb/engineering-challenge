@@ -40,6 +40,7 @@ motor_r = Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
 motor_l = Motor(4, 5, 6) #SO ARE THESE
 
 TURN_TIME = 3 #constant for amount of time (secs) cart takes to turn
+COLL_REVERSE_TIME = 1
 
 while True:
   command = event_queue.get()
@@ -76,3 +77,9 @@ while True:
     motor_r.stop()
     motor_l.stop()
     print('Motors stopped')
+
+  elif command == '_collide_':
+    print('Collided!')
+    event_queue.put("back")
+    sleep(COLL_REVERSE_TIME)
+    event_queue.put("stop")
