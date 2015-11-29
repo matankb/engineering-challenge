@@ -1,4 +1,4 @@
-from motor.py import Motor
+import io.py
 import speech_recognition as sr
 from queue import Queue
 from time import sleep
@@ -36,8 +36,8 @@ with mic as source:
 
 rec.listen_in_background(mic, phrase_heard)
 
-motor_r = Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
-motor_l = Motor(4, 5, 6) #SO ARE THESE
+motor_r = io.Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
+motor_l = io.Motor(4, 5, 6) #SO ARE THESE
 
 TURN_TIME = 3 #constant for amount of time (secs) cart takes to turn
 COLL_REVERSE_TIME = 1
