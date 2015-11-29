@@ -1,6 +1,7 @@
 from motor.py import Motor
 import speech_recognition as sr
 from queue import Queue
+from time import sleep
 
 event_queue = Queue()
 
