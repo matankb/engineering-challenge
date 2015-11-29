@@ -5,6 +5,17 @@ from time import sleep
 
 event_queue = Queue()
 
+DEBUG = true #set to true if debugging / developing
+
+if DEBUG:
+    from threading import Thread
+    #this allows us to input via keyboard
+    def input_cb():
+        event_queue.put(input())
+        input_cb()
+
+    Thread(None, input_cb).start()
+
 rec = sr.Recognizer()
 mic = sr.Microphone()
 
@@ -37,7 +48,7 @@ while True:
     print('Moving left...')
     motor_r.forward()
     motor_l.back()
-    
+
     sleep(TURN_TIME)
     event.queue.put('stop')
 
