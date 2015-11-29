@@ -7,10 +7,10 @@ class Pin:
         self.num = num
         GPIO.setup(num, GPIO.OUT)
 
-    def on(self):
+    def high(self):
         GPIO.output(self.num, GPIO.HIGH)
 
-    def off(self):
+    def low(self):
         GPIO.output(self.num, GPIO.LOW)
 
 class Motor:
@@ -20,14 +20,14 @@ class Motor:
         self.pin_e = Pin(pin_e)
 
     def forward(self):
-        self.pin_a.on()
-        self.pin_b.off()
-        self.pin_e.on()
+        self.pin_a.high()
+        self.pin_b.low()
+        self.pin_e.high()
 
     def back(self):
-        self.pin_a.off()
-        self.pin_b.on()
-        self.pin_e.on()
+        self.pin_a.low()
+        self.pin_b.high()
+        self.pin_e.high()
 
     def stop(self):
-        self.pin_e.off()
+        self.pin_e.low()
