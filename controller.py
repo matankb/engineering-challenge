@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+from motor.py import Motor
 import speech_recognition as sr
 from queue import Queue
 
