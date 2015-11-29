@@ -53,7 +53,12 @@ while True:
 
     sleep(TURN_TIME)
     event_queue.put('stop')
-    
+
+  elif command == 'back' or command == 'reverse':
+    print('Moving back...')
+    motor_r.back()
+    motor_l.back()
+
   elif command == 'stop':
     print('Stopping motors..')
     #turns motors off
