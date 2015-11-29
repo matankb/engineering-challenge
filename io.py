@@ -2,25 +2,32 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
 
+class Pin:
+    def __init__(self, num):
+        self.num = num
+        GPIO.setup(num, GPIO.OUT)
+
+    def on(self):
+        GPIO.output(self.num, GPIO.HIGH)
+
+    def off(self):
+        GPIO.output(self.num, GPIO.LOW)
+
 class Motor:
     def __init__(self, pin_a, pin_b, pin_e):
-        self.pin_a = pin_a
-        self.pin_b = pin_b
-        self.pin_e = pin_e
-
-        GPIO.setup(pin_a, GPIO.OUT)
-        GPIO.setup(pin_b, GPIO.OUT)
-        GPIO.setup(pin_e, GPIO.OUT)
+        self.pin_a = Pin(pin_a)
+        self.pin_b = Pin(pin_b)
+        self.pin_e = Pin(pin_e)
 
     def forward(self):
-        GPIO.output(self.pin_a, GPIO.HIGH)
-        GPIO.output(self.pin_b, GPIO.LOW)
-        GPIO.output(self.pin_e, GPIO.HIGH)
+        self.pin_a.on()
+        self.pin_b.off()
+        self.pin_e.on()
 
     def back(self):
-        GPIO.output(self.pin_a, GPIO.LOW)
-        GPIO.output(self.pin_b, GPIO.HIGH)
-        GPIO.output(self.pin_e, GPIO.HIGH)
+        self.pin_a.off()
+        self.pin_b.on()
+        self.pin_e.on()
 
     def stop(self):
-        GPIO.output(self.pin_e, GPIO.LOW)
+        self.pin_e.off()
