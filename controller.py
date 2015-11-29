@@ -24,35 +24,27 @@ with mic as source:
 
 rec.listen_in_background(mic, phrase_heard)
 
-#set mode for identifying pins
-GPIO.setmode(GPIO.BOARD)
-
-#set constants for GPIO pin numbers
-MOTOR_RIGHT = 16
-MOTOR_LEFT = 18
-
-GPIO.setup(MOTOR_RIGHT, GPIO.OUT)
-GPIO.setup(MOTOR_LEFT, GPIO.OUT)
+motor_r = Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
+motor_l = Motor(4, 5, 6) #SO ARE THESE
 
 while True:
   command = event_queue.get()
 
   if command == 'left':
     print('Moving left...')
-    GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
-    GPIO.output(MOTOR_LEFT, GPIO.LOW)
+    motor_r.forward()
+    motor_l.stop()
   elif command == 'right':
     print('Moving right...')
-    GPIO.output(MOTOR_LEFT, GPIO.HIGH)
-    GPIO.output(MOTOR_RIGHT, GPIO.LOW)
+    motor_r.stop()
+    motor_l.forward()
   elif command == 'forward' or command == 'go':
     print('Moving forward...')
-    GPIO.output(MOTOR_RIGHT, GPIO.HIGH)
-    GPIO.output(MOTOR_LEFT, GPIO.HIGH)
+    motor_r.forward()
+    motor_l.forward()
   elif command == 'stop':
     print('Stopping motors..')
     #turns motors off
-    GPIO.output(MOTOR_RIGHT, GPIO.LOW)
-    GPIO.output(MOTOR_LEFT, GPIO.LOW)
-    GPIO.cleanup()
+    motor_r.stop()
+    motor_l.stop()
     print('Motors stopped')
