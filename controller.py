@@ -1,21 +1,22 @@
-import io
-import background_listener as bl
-from queue import Queue
-from time import sleep
-
-event_queue = Queue()
-
 DEBUG = True #set to true if debugging / developing
 
 if DEBUG:
     from threading import Thread
+    import dummy_io as io
     #this allows us to input via keyboard
     def input_cb():
         event_queue.put(input())
         input_cb()
 
     Thread(None, input_cb).start()
+else:
+    import io
 
+import background_listener as bl
+from queue import Queue
+from time import sleep
+
+event_queue = Queue()
 
 def sr_success(phrase):
     commands = phrase.split(' ')
