@@ -11,7 +11,7 @@ def start(callback):
 
     while True:
       event = event_queue.get()
-      callback(event)
+      callback(event.type, event.param)
 
 def queue(type, param):
     event_queue.put(Event(type, param))

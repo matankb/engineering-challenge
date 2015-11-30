@@ -34,12 +34,12 @@ bl.start_listening(sr_success, sr_failure)
 
 
 motor_r = io.Motor(MOTORR_A, MOTORR_B, MOTORR_E)
-motor_l = io.Motor(MOTORL_A, MOTORL_B, MOTORL_E) 
+motor_l = io.Motor(MOTORL_A, MOTORL_B, MOTORL_E)
 
 
-def handle_event(event):
-    if event.type == 'user':
-        if event.param == 'left':
+def handle_event(type, param):
+    if type == 'user':
+        if param == 'left':
             print('Moving left...')
             motor_r.forward()
             motor_l.back()
@@ -48,7 +48,7 @@ def handle_event(event):
             motor_r.stop()
             motor_l.stop()
 
-        elif event.param == 'right':
+        elif param == 'right':
             print('Moving right...')
             motor_r.back()
             motor_l.forward()
@@ -57,25 +57,25 @@ def handle_event(event):
             motor_r.stop()
             motor_l.stop()
 
-        elif event.param == 'forward' or event == 'go':
+        elif param == 'forward' or param == 'go':
             print('Moving forward...')
             motor_r.forward()
             motor_l.forward()
 
-        elif event.param == 'back' or event == 'reverse':
+        elif param == 'back' or param == 'reverse':
             print('Moving back...')
             motor_r.back()
             motor_l.back()
 
-        elif event.param == 'stop':
+        elif param == 'stop':
             print('Stopping motors..')
             #turns motors off
             motor_r.stop()
             motor_l.stop()
             print('Motors stopped')
 
-    elif event.type == 'internal':
-        if event.param == 'collide':
+    elif type == 'internal':
+        if param == 'collide':
             print('Collided!')
             motor_r.back()
             motor_l.back()
