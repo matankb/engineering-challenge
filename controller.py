@@ -16,25 +16,14 @@ if DEBUG:
 
     Thread(None, input_cb).start()
 
-rec = sr.Recognizer()
-mic = sr.Microphone()
 
-def phrase_heard(rec, audio):
-  try:
-    rec_google = rec.recognize_google(audio)
-    commands = rec_google.split(' ')
+def sr_sucess(phrase):
+    commands = phrase.split(' ')
     for command in commands:
         event_queue.put(command)
-  except sr.UnknownValueError:
-    print('Error: could not recognize speech')
-  except sr.RequestError as e:
-    print('Error: could not complete request; {0}'.format(e))
+def sr_failure(e):
+    print('Error: ; {0}'.format(e))
 
-with mic as source:
-  #calibrates for background noise
-  rec.adjust_for_ambient_noise(source)
-
-rec.listen_in_background(mic, phrase_heard)
 
 motor_r = io.Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
 motor_l = io.Motor(4, 5, 6) #SO ARE THESE
