@@ -10,7 +10,7 @@ import lib/background_listener as bl
 from queue import Queue
 from time import sleep
 import lib/event_loop
-
+from config import *
 
 if DEBUG:
     #this allows us to input via keyboard
@@ -33,11 +33,9 @@ bl.start_listening(sr_success, sr_failure)
 
 
 
-motor_r = io.Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
-motor_l = io.Motor(4, 5, 6) #SO ARE THESE
+motor_r = io.Motor(MOTORR_A, MOTORR_B, MOTORR_E)
+motor_l = io.Motor(MOTORL_A, MOTORL_B, MOTORL_E) 
 
-TURN_TIME = 3 #constant for amount of time (secs) cart takes to turn
-COLL_REVERSE_TIME = 1
 
 def handle_event(event):
     if event.type == 'user':
