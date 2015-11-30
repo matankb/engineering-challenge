@@ -17,7 +17,6 @@ if DEBUG:
     def input_cb():
         event_queue.put(input())
         input_cb()
-
     Thread(None, input_cb).start()
 
 def sr_success(phrase):
@@ -25,7 +24,7 @@ def sr_success(phrase):
     for command in commands:
         event_queue.put(command)
 def sr_failure(e):
-    print('Error: ; {0}'.format(e))
+    print(e)
 
 
 motor_r = io.Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
@@ -33,6 +32,7 @@ motor_l = io.Motor(4, 5, 6) #SO ARE THESE
 
 TURN_TIME = 3 #constant for amount of time (secs) cart takes to turn
 COLL_REVERSE_TIME = 1
+
 
 while True:
   command = event_queue.get()
