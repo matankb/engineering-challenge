@@ -38,7 +38,7 @@ def sr_success(phrase):
 def sr_failure(e):
     print(e)
 
- stop_listening = bl.start_listening(sr_success, sr_failure)
+stop_listening = bl.start_listening(sr_success, sr_failure)
 
 
 
