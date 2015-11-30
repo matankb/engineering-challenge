@@ -8,6 +8,7 @@ with mic as source:
   rec.adjust_for_ambient_noise(source)
 
 def start_listening(onsuccess, onfailure):
+    
     def phrase_heard(rec, audio):
         try:
             onsuccess(rec.recognize_google(audio))
@@ -15,4 +16,5 @@ def start_listening(onsuccess, onfailure):
             onfailure('UnknownValueError')
         except sr.RequestError:
             onfailure('RequestError')
+
     rec.listen_in_background(mic, phrase_heard)
