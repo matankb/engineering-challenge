@@ -17,7 +17,7 @@ if DEBUG:
     Thread(None, input_cb).start()
 
 
-def sr_sucess(phrase):
+def sr_success(phrase):
     commands = phrase.split(' ')
     for command in commands:
         event_queue.put(command)
@@ -40,7 +40,7 @@ while True:
     motor_l.back()
 
     sleep(TURN_TIME)
-    event.queue.put('stop')
+    event_queue.put('stop')
 
   elif command == 'right':
     print('Moving right...')
