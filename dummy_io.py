@@ -1,4 +1,4 @@
-#dummy_io.py - a module for using IO without access to RPi.GPIO
+#dummy_io.py - a module for using IO module without access to RPi.GPIO
 
 class Pin:
     def __init__(self, num):
