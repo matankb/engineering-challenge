@@ -1,5 +1,8 @@
 #dummy_io.py - a module for using IO module without access to RPi.GPIO
 
+RISING = ''
+FALLING = ''
+
 class Pin:
     def __init__(self, num):
         self.num = num
@@ -29,7 +32,7 @@ class Motor:
     def stop(self):
         self.pin_e.low()
 
-def on_input(num, callback, type):
+def on_input(num, callback, type = RISING):
     ''
 def cleanup():
     ''
