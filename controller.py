@@ -96,7 +96,10 @@ def handle_event(type, param):
 
         elif param == 'exit':
             print('Cleaning up...')
+            motor_r.stop()
+            motot_l.stop()
             io.cleanup()
+
             stop_listening()
             print('Exiting')
             sys.exit(0)
