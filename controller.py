@@ -40,7 +40,10 @@ def sr_failure(e):
 
 stop_listening = bl.start_listening(sr_success, sr_failure)
 
+def on_collide():
+    event_loop.queue('internal', 'collide')
 
+io.on_input(INPUT_COLLIDE, on_collide, io.RISING)
 
 
 motor_r = io.Motor(MOTORR_A, MOTORR_B, MOTORR_E)
