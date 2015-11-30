@@ -39,3 +39,6 @@ def on_input(num, callback, type = RISING):
     GPIO.setup(num, GPIO.IN)
 
     GPIO.add_event_detect(num, type, callback)
+
+def cleanup():
+    GPIO.cleanup()

@@ -31,3 +31,5 @@ class Motor:
 
 def on_input(num, callback, type):
     ''
+def cleanup():
+    ''
