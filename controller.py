@@ -5,7 +5,7 @@ from time import sleep
 
 event_queue = Queue()
 
-DEBUG = true #set to true if debugging / developing
+DEBUG = True #set to true if debugging / developing
 
 if DEBUG:
     from threading import Thread
