@@ -12,6 +12,7 @@ from time import sleep
 from lib import event_loop
 from config import *
 
+
 if DEBUG:
     #this allows us to input via keyboard
     def input_cb():
@@ -81,6 +82,7 @@ def handle_event(type, param):
             print('Collided!')
             motor_r.back()
             motor_l.back()
+
             sleep(COLL_REVERSE_TIME)
             motor_r.stop()
             motor_l.stop()
