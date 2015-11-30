@@ -2,14 +2,14 @@ DEBUG = True #set to true if debugging / developing
 
 if DEBUG:
     from threading import Thread
-    import dummy_io as io
+    import lib/dummy_io as io
 else:
-    import io
+    import lib/io
 
-import background_listener as bl
+import lib/background_listener as bl
 from queue import Queue
 from time import sleep
-import event_loop
+import lib/event_loop
 
 
 if DEBUG:
