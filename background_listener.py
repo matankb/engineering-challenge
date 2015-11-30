@@ -7,10 +7,10 @@ with mic as source:
   #calibrates for background noise
   rec.adjust_for_ambient_noise(source)
 
-#def phrase_heard(rec, audio):
-  #try:
-    #sr_onsuccess(rec.recognize_google(audio))
-  #except Exception as e:
-    #sr_onfailure(e)
-
-#rec.listen_in_background(mic, phrase_heard)
+def start_listening(onsuccess, onfailure):
+    def phrase_heard(rec, audio):
+        try:
+            onsuccess(rec.recognize_google)
+        except Exception as e:
+            onfailure(e)
+    rec.listen_in_background(mic, phrase_heard)
