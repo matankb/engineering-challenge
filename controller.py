@@ -1,3 +1,9 @@
+'''
+    REMEMBER TO CHANGE THE CONSTANTS
+    OR WE WILL BE MAKING AN ORGANIZER
+
+'''
+
 DEBUG = True #set to true if debugging / developing
 
 if DEBUG:
@@ -6,6 +12,7 @@ if DEBUG:
 else:
     from lib import io
 
+import sys
 from lib import background_listener as bl
 from queue import Queue
 from time import sleep
@@ -31,7 +38,7 @@ def sr_success(phrase):
 def sr_failure(e):
     print(e)
 
-bl.start_listening(sr_success, sr_failure)
+ stop_listening = bl.start_listening(sr_success, sr_failure)
 
 
 
@@ -86,5 +93,12 @@ def handle_event(type, param):
             sleep(COLL_REVERSE_TIME)
             motor_r.stop()
             motor_l.stop()
+
+        elif param == 'exit':
+            print('Cleaning up...')
+            io.cleanup()
+            stop_listening()
+            print('Exiting')
+            sys.exit(0)
 
 event_loop.start(handle_event)
