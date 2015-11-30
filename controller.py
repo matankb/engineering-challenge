@@ -26,6 +26,7 @@ def sr_success(phrase):
 def sr_failure(e):
     print(e)
 
+bl.start_listening(sr_success, sr_failure)
 
 motor_r = io.Motor(1, 2, 3) #THESE ARE PLACEHOLDERS
 motor_l = io.Motor(4, 5, 6) #SO ARE THESE
