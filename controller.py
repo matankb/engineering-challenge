@@ -2,14 +2,14 @@ DEBUG = True #set to true if debugging / developing
 
 if DEBUG:
     from threading import Thread
-    import lib/dummy_io as io
+    from lib import dummy_io as io
 else:
-    import lib/io
+    from lib import io
 
-import lib/background_listener as bl
+from lib import background_listener as bl
 from queue import Queue
 from time import sleep
-import lib/event_loop
+from lib import event_loop
 from config import *
 
 if DEBUG:
@@ -17,7 +17,9 @@ if DEBUG:
     def input_cb():
         event_loop.queue('user', input())
         input_cb()
-    Thread(None, input_cb).start()
+    input_thread = Thread(None, input_cb)
+    input_thread.daemon = True
+    input_thread.start()
 
 
 
