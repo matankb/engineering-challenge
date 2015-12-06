@@ -8,10 +8,10 @@ class Pin:
         self.num = num
 
     def high(self):
-        self.num #useless expression, will break if not there
+        pass
 
     def low(self):
-        self.num
+        pass
 
 class Motor:
     def __init__(self, pin_a, pin_b, pin_e):
